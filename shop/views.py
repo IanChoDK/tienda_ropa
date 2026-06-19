@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from ropa.models import Ropa
+from .models import Ropa
 
 # Create your views here.
 

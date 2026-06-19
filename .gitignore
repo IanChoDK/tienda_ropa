@@ -216,3 +216,11 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Ignorar carpetas de migraciones en Django/Python
+*/migrations/   
+
+# Ignorar archivos de base de datos SQLite
+*.sqlite
+*.sqlite3
+*.db   
