@@ -9,8 +9,17 @@
     {% tailwind_css %}
 </head>
 
+<navbar class="w-full bg-neutral-300 bg fixed top-0">
+    <div class="flex items-center justify-between p-4 w-full">
+        <a href="{% url 'ropa_list' %}" class="text-black hover:text-red-600 text-lg font-bold">Tienda de Ropa</a>
+        <div class="text-black">
+            <a href="{% url 'crear_ropa' %}" class=" hover:text-red-600 px-3 py-2 rounded-md text-sm font-medium">Subir ropa</a>
+        </div>
+    </div>
+</navbar>
 
-<body class="flex flex-col min-h-screen items-center text-center justify-center bg-indigo-500 text-white">
+
+<body class="flex flex-col min-h-screen pt-16 items-center text-center justify-center bg-neutral-900 text-white">
     
     {% block body %}
 
