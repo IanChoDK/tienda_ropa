@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-    <h1>Ropa disponible</h1>
+{% extends 'base.html' %}
+
+{% block title %}Ropa{% endblock %}
+
+{% block body %}
+    <h1 class="text-2xl font-bold">Ropa disponible</h1>
     <ul>
         {% for item in ropa %}
             <li>{{ item.nombre }}</li>
@@ -18,8 +14,12 @@
             {% else %}
                 <p>No hay imagen</p>
             {% endif %}
+            <div class="flex justify-between mt-2 items-center text-center">
+                <a class="flex bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" href="{% url 'editar_ropa' item.id %}">Editar</a>
+                <a class="flex bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" href="{% url 'eliminar_ropa' item.id %}">Eliminar</a>
+            </div>
+            <hr />
         {% endfor %}
     </ul>
+{% endblock %}
 
-</body>
-</html>
