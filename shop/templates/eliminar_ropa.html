@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Eliminando ropa{% endblock %}
+
+{% block body %}
+
+<h1 class="text-2xl font-bold mb-4 ">Eliminar prenda?</h1>
+<form class="flex flex-col items-center bg-neutral-700 rounded-2xl p-2 " method="post" enctype="multipart/form-data">
+
+    {% csrf_token %}
+
+    <h2> Esta seguro de eliminar esta prenda? </h2>
+    <h3>
+        PRENDA: {{ ropa.nombre }}, PRECIO: ${{ ropa.precio }}
+    </h3>
+
+
+    <button class="bg-red-800 hover:bg-red-500 text-white max-w-xs cursor-pointer font-bold py-2 px-4 rounded" type="submit">Eliminar</button>
+    <a href="{% url 'ropa_list' %}">No, volver</a>
+</form>
+
+{% endblock %}
