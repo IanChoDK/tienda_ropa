@@ -67,6 +67,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'tienda_ropa.context_processors.fecha_context',
+                'tienda_ropa.context_processors.info_context',
+
             ],
         },
     },
