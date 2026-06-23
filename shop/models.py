@@ -22,6 +22,7 @@ class Ropa(models.Model):
     stock = models.IntegerField(default=0)
     disponible = models.BooleanField(default=True)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name='ropa')
+    activo = models.BooleanField(default=True)
 
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     fecha_modificacion = models.DateTimeField(auto_now=True)
