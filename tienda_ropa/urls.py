@@ -16,6 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from usuarios.views import registrarse
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('shop/', include('shop.urls')),
+    path('usuarios/register/', registrarse, name="register"),
 from django.conf import settings
 from django.conf.urls.static import static
 
