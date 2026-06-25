@@ -17,4 +17,4 @@ def registrarse(request):
             return redirect("/")
     else:
         form = UsuarioPersonalizadoForm()
-    return render(request, "usuarios/register.html", {"form": form})
+    return render(request, "registration/register.html", {"form": form})
