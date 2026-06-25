@@ -76,8 +76,10 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'tienda_ropa.wsgi.application'
+LOGIN_REDIRECT_URL = 'ropa_list'
+LOGOUT_REDIRECT_URL = 'inicio'
 
+WSGI_APPLICATION = 'tienda_ropa.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
