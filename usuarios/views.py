@@ -14,7 +14,7 @@ def registrarse(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect("")
+            return redirect("/")
     else:
         form = UsuarioPersonalizadoForm()
-    return render(request, "usuarios/register.html", {"form": form})
+    return render(request, "registration/register.html", {"form": form})
