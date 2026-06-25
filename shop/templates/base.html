@@ -16,8 +16,18 @@
     
     <navbar class="w-full bg-neutral-300 fixed top-0">
         <div class="flex items-center justify-between p-4 w-full">
-            <a href="{% url 'ropa_list' %}" class="text-black hover:text-red-600 text-lg font-bold">Tienda de Ropa</a>
-            <div class="text-black">
+            <a href="{% url 'inicio' %}" class="text-black hover:text-red-600 text-lg font-bold">Tienda de Ropa</a>
+            <div class="text-black flex flex-row items-center justify-center">
+                {% if user.is_authenticated %}
+                    <form action="{% url 'logout' %}" method="post">
+                        {%csrf_token%}
+                        <a> {{ user.username }}</a>
+                        <button type="submit">Logout</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}">Login</a>
+                {% endif %}
+                <a href="{% url 'ropa_list' %}" class=" hover:text-red-600 px-3 py-2 rounded-md text-sm font-medium">Nuestras prendas</a>
                 <a href="{% url 'crear_ropa' %}" class=" hover:text-red-600 px-3 py-2 rounded-md text-sm font-medium">Subir ropa</a>
             </div>
             

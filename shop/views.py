@@ -2,12 +2,19 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Ropa
 from .forms import RopaForm
 
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 
+@login_required
 def ropa_list(request):
     ropa = Ropa.objects.all().order_by("-id").filter(activo=True)
     return render(request, "ropa_list.html", {"ropa": ropa})
 
+def inicio(request):
+    return render(request, 'inicio.html')
+
+@login_required
 def crear_ropa(request):
     if request.method == "POST":
         form = RopaForm(request.POST, request.FILES)
@@ -18,6 +25,7 @@ def crear_ropa(request):
         form = RopaForm()
     return render(request, "crear_ropa.html", {"form": form})
 
+@login_required
 def editar_ropa(request, id):
     ropa = get_object_or_404(Ropa, id=id)
 
@@ -31,6 +39,7 @@ def editar_ropa(request, id):
 
     return render(request, "editar_ropa.html", {"form": form})
 
+@login_required
 def eliminar_ropa(request,id):
     ropa = get_object_or_404(Ropa, id=id)
     if request.method == "POST":

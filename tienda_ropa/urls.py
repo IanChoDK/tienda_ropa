@@ -24,7 +24,8 @@ from usuarios.views import registrarse
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('shop.urls')),
-    path('register/', registrarse, name="register"),
+    path('accounts/', include("django.contrib.auth.urls")),
+    path('accounts/register/', registrarse, name="register"),
 ]
 
 if settings.DEBUG:

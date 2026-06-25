@@ -1,38 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block body %}
+
 <h1>Iniciar sesion</h1>
 
-{% if error %}
-<p>
-    {{ error }}
-</p>
-{% endif %}
 
 <form method="POST">
 
     {% csrf_token %}
-
-    <label>
-        Usuario:
-    </label>
-
-    <input 
-        type="text"
-        name="username"
-    >
-
-    <br>
-
-    <label>
-        Contrasenia:
-    </label>
-
-    <input 
-        type="password"
-        name="password"
-    >
+    {{ form.as_p }}
 
     <br>
 
     <button type="submit">
-        Entrar
+        Login
     </button>
+
+    <br>
+
+
+    <a href="{% url 'register' %}">¿No tienes una cuenta? Registrarse</a>
+
 </form>
+
+{% endblock %}
