@@ -1,9 +1,25 @@
 {% extends "base.html" %}
 
-{% block title %}Inicio{% endblock %}
+{% block title %}Inicio | Tienda de Ropa{% endblock %}
 
 {% block body %}
 
-    <h1>Tienda de ropa</h1>
+    <section class="w-full flex flex-col items-center justify-center text-center px-4 py-24">
+        
+        <h1 class="text-7xl font-extrabold text-white mb-6">
+            Tienda_<span class="text-red-500">ROPA.</span>
+        </h1>
+        
+        <p class="text-xl text-neutral-300 mb-10 max-w-2xl">
+            Descubre nuestra nueva coleccion para programadores PrendasUnicas, estilo_inconfundible y la mejor calidad.
+        </p>
+        
+        <div class="flex flex-row gap-4">
+            <a href="{% url 'ropa_list' %}" class="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-full font-bold text-lg transition-transform transform hover:scale-105 shadow-lg shadow-red-900/50">
+                Ver Colección
+            </a>
+        </div>
+        
+    </section>
     
 {% endblock %}

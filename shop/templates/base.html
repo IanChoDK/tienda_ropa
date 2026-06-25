@@ -1,54 +1,70 @@
 {% load static tailwind_tags %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}App{% endblock %}</title>
+    <title>{% block title %}Tienda de Ropa{% endblock %}</title>
     {% tailwind_css %}
 </head>
 
-
-
-
-<body class="flex flex-col min-h-screen pt-16 items-center text-center justify-center bg-neutral-900 text-white">
+<body class="flex flex-col min-h-screen bg-neutral-900 text-white font-sans antialiased">
     
-    <navbar class="w-full bg-neutral-300 fixed top-0">
-        <div class="flex items-center justify-between p-4 w-full">
-            <a href="{% url 'inicio' %}" class="text-black hover:text-red-600 text-lg font-bold">Tienda de Ropa</a>
-            <div class="text-black flex flex-row items-center justify-center">
-                {% if user.is_authenticated %}
-                    <form action="{% url 'logout' %}" method="post">
-                        {%csrf_token%}
-                        <a> {{ user.username }}</a>
-                        <button type="submit">Logout</button>
-                    </form>
-                {% else %}
-                    <a href="{% url 'login' %}">Login</a>
-                {% endif %}
-                <a href="{% url 'ropa_list' %}" class=" hover:text-red-600 px-3 py-2 rounded-md text-sm font-medium">Nuestras prendas</a>
-                <a href="{% url 'crear_ropa' %}" class=" hover:text-red-600 px-3 py-2 rounded-md text-sm font-medium">Subir ropa</a>
+    <nav class="w-full bg-neutral-950/90 fixed top-0 z-50 border-b border-neutral-800 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="flex items-center justify-between h-16">
+                
+                <div class="flex">
+                    <a href="{% url 'inicio' %}" class="text-white hover:text-red-500 transition-colors text-2xl font-black">
+                        TIENDA DE ROPA
+                    </a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <a href="{% url 'ropa_list' %}" class="text-neutral-300 hover:text-white hover:bg-neutral-800 px-3 py-2 rounded-md text-sm font-medium transition-all">Nuestras prendas</a>
+                    
+                    {% if perms.shop.add_ropa %}
+                        <a href="{% url 'crear_ropa' %}" class="text-neutral-300 hover:text-white hover:bg-neutral-800 px-3 py-2 rounded-md text-sm font-medium transition-all">Subir ropa</a>
+                    {% endif %}
+
+                    <div class="h-6 border-l border-neutral-700 mx-2"></div> {% if user.is_authenticated %}
+                        <form action="{% url 'logout' %}" method="post" class="flex items-center gap-3 m-0">
+                            {% csrf_token %}
+                            <span class="text-sm text-neutral-400">Hola, <strong class="text-white">{{ user.username }}</strong></span>
+                            <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm font-bold transition-colors">Salir</button>
+                        </form>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="bg-white hover:bg-neutral-200 text-black px-4 py-2 rounded-md text-sm font-bold transition-colors">Iniciar sesión</a>
+                    {% endif %}
+                </div>
+
             </div>
-            
         </div>
-    </navbar>
+    </nav>
 
-    {% block body %}
+    <main class="pt-16 flex flex-col items-center w-full">
+        {% block body %}
+        {% endblock %}
+    </main>
 
-    {% endblock %}
-
-    <footer class="w-full bg-neutral-800 text-white mt-auto">
-        <div class="flex items-center justify-between">
-            <div class="flex flex-row items-center">
-                <h3 class="text-xl px-3">Contactanos</h3>
-                <ul class="text-xs items-center text-left">
-                    <li>Nuestro whatsapp: {{ telefono }}</li>
-                    <li>Nuestro E-mail: {{ email }}</li>
-                    <li>Nuestra Tienda fisica: {{ direccion }}</li>
+    <footer class="w-full bg-neutral-950 border-t border-neutral-800 text-neutral-400 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row items-center justify-between">
+            
+            <div class="mb-4 md:mb-0 text-center md:text-left">
+                <h3 class="text-white text-lg font-bold mb-2 tracking-wide uppercase">Contáctanos</h3>
+                <ul class="text-sm space-y-1">
+                    <li><span class="font-semibold">WhatsApp:</span> {{ telefono }}</li>
+                    <li><span class="font-semibold">Email:</span> {{ email }}</li>
+                    <li><span class="font-semibold">Tienda:</span> {{ direccion }}</li>
                 </ul>
             </div>
-            <a>{{fecha}}</a>
+            
+            <div class="text-sm text-neutral-500">
+                <p>&copy; {{ fecha }} Tienda de Ropa.</p>
+                <p>Todos los derechos reservados.</p>
+            </div>
+            
         </div>
     </footer>
 
