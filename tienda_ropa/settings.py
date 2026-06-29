@@ -76,7 +76,7 @@ TEMPLATES = [
     },
 ]
 
-LOGIN_REDIRECT_URL = 'ropa_list'
+LOGIN_REDIRECT_URL = 'producto_list'
 LOGOUT_REDIRECT_URL = 'inicio'
 
 WSGI_APPLICATION = 'tienda_ropa.wsgi.application'

@@ -11,6 +11,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 
 
 @login_required
+@permission_required("shop.view_ropa")
 def ropa_list(request):
     ropa = Ropa.objects.all().order_by("-id").filter(activo=True)
     return render(request, "ropa_list.html", {"ropa": ropa})

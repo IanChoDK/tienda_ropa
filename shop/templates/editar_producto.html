@@ -1,16 +1,34 @@
 {% extends 'base.html' %}
 
-{% block title %}Editando Producto{% endblock %}
+{% block title %}Editar Producto | Admin{% endblock %}
 
 {% block body %}
+<div class="w-full max-w-lg mx-auto mt-12 bg-neutral-800 rounded-xl shadow-lg border border-neutral-700 p-8">
+    
+    <div class="mb-6 border-b border-neutral-700 pb-4">
+        <h1 class="text-2xl font-black text-white">Editar Producto</h1>
+        <p class="text-neutral-400 text-sm mt-1">Actualiza el stock o las variantes de esta prenda.</p>
+    </div>
 
-<h1 class="text-2xl font-bold mb-4 ">Editando producto</h1>
-<form class="flex flex-col items-center bg-neutral-700 rounded-2xl p-2 " method="post" enctype="multipart/form-data">
+    <form method="post" class="
+        [&>p]:mb-5 
+        [&_label]:block [&_label]:text-sm [&_label]:font-bold [&_label]:text-neutral-300 [&_label]:mb-2 
+        [&_input[type='number']]:w-full [&_select]:w-full
+        [&_input]:bg-neutral-900 [&_input]:border [&_input]:border-neutral-600 [&_input]:rounded-md [&_input]:p-2.5 [&_input]:text-white [&_input]:focus:border-blue-500 [&_input]:focus:ring-1 [&_input]:focus:ring-blue-500 [&_input]:outline-none
+        [&_select]:bg-neutral-900 [&_select]:border [&_select]:border-neutral-600 [&_select]:rounded-md [&_select]:p-2.5 [&_select]:text-white [&_select]:focus:border-blue-500 [&_select]:focus:outline-none
+    ">
+        {% csrf_token %}
+        
+        {{ form.as_p }}
 
-    {% csrf_token %}
-    {{ form.as_p }}
-
-    <button class="bg-red-800 hover:bg-red-500 text-white max-w-xs cursor-pointer font-bold py-2 px-4 rounded" type="submit">Guardar cambios</button>
-</form>
-
+        <div class="mt-8 flex justify-end gap-4">
+            <a href="{% url 'producto_list' %}" class="bg-neutral-700 hover:bg-neutral-600 text-white font-bold py-2.5 px-6 rounded-md transition-colors">
+                Cancelar
+            </a>
+            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-6 rounded-md transition-colors shadow-lg shadow-blue-900/20">
+                Guardar Cambios
+            </button>
+        </div>
+    </form>
+</div>
 {% endblock %}
