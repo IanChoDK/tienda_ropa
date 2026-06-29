@@ -1,28 +1,37 @@
 {% extends 'base.html' %}
 
-{% block title %}Login{% endblock %}
+{% block title %}Iniciar Sesión | Tienda de Ropa{% endblock %}
 
 {% block body %}
+<div class="w-full max-w-md mx-auto mt-20 bg-neutral-800 rounded-2xl shadow-2xl border border-neutral-700 p-8 sm:p-10">
+    
+    <div class="text-center mb-8">
+        <h1 class="text-3xl font-black text-white mb-2">Bienvenido de nuevo</h1>
+        <p class="text-neutral-400 text-sm">Ingresa tus credenciales para acceder a tu cuenta.</p>
+    </div>
 
-<h1>Iniciar sesion</h1>
+    <form method="POST" class="
+        [&>p]:mb-5 
+        [&_label]:block [&_label]:text-sm [&_label]:font-bold [&_label]:text-neutral-300 [&_label]:mb-2 
+        [&_input]:w-full [&_input]:bg-neutral-900 [&_input]:border [&_input]:border-neutral-600 [&_input]:rounded-md [&_input]:p-3 [&_input]:text-white [&_input]:focus:border-white [&_input]:focus:ring-1 [&_input]:focus:ring-white [&_input]:outline-none [&_input]:transition-colors
+        [&_ul.errorlist]:text-red-500 [&_ul.errorlist]:text-sm [&_ul.errorlist]:font-medium [&_ul.errorlist]:mt-2 [&_ul.errorlist]:list-disc [&_ul.errorlist]:ml-4
+        [&_.helptext]:text-xs [&_.helptext]:text-neutral-500 [&_.helptext]:mt-1 [&_.helptext]:block
+    ">
+        {% csrf_token %}
+        
+        {{ form.as_p }}
 
+        <button type="submit" class="w-full mt-4 bg-white hover:bg-neutral-200 text-black font-bold py-3 px-4 rounded-md transition-colors shadow-lg text-lg">
+            Ingresar
+        </button>
+    </form>
 
-<form method="POST">
+    <div class="mt-8 text-center border-t border-neutral-700 pt-6">
+        <p class="text-neutral-400 text-sm">
+            ¿No tienes una cuenta? 
+            <a href="{% url 'register' %}" class="text-white font-bold hover:underline transition-all">Registrarse</a>
+        </p>
+    </div>
 
-    {% csrf_token %}
-    {{ form.as_p }}
-
-    <br>
-
-    <button type="submit">
-        Login
-    </button>
-
-    <br>
-
-
-    <a href="{% url 'register' %}">¿No tienes una cuenta? Registrarse</a>
-
-</form>
-
+</div>
 {% endblock %}

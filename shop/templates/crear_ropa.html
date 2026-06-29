@@ -1,16 +1,36 @@
 {% extends 'base.html' %}
 
-{% block title %}Subir ropa{% endblock %}
+{% block title %}Admin | Subir ropa{% endblock %}
 
 {% block body %}
+<div class="w-full max-w-lg mx-auto mt-12 bg-neutral-800 rounded-xl shadow-lg border border-neutral-700 p-8">
+    
+    <div class="mb-6 border-b border-neutral-700 pb-4">
+        <h1 class="text-2xl font-black text-white">Subir Nueva Prenda</h1>
+        <p class="text-neutral-400 text-sm mt-1">Completa los datos para registrar un modelo base.</p>
+    </div>
 
-<h1 class="text-2xl font-bold mb-4 ">Subir prenda</h1>
-<form class="flex flex-col items-center bg-neutral-700 rounded-2xl p-2 " method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data" class="
+        [&>p]:mb-5 
+        [&_label]:block [&_label]:text-sm [&_label]:font-bold [&_label]:text-neutral-300 [&_label]:mb-2 
+        [&_input[type='text']]:w-full [&_input[type='number']]:w-full [&_input[type='file']]:w-full [&_select]:w-full [&_textarea]:w-full
+        [&_input]:bg-neutral-900 [&_input]:border [&_input]:border-neutral-600 [&_input]:rounded-md [&_input]:p-2.5 [&_input]:text-white [&_input]:focus:border-red-500 [&_input]:focus:ring-1 [&_input]:focus:ring-red-500 [&_input]:outline-none
+        [&_textarea]:bg-neutral-900 [&_textarea]:border [&_textarea]:border-neutral-600 [&_textarea]:rounded-md [&_textarea]:p-2.5 [&_textarea]:text-white [&_textarea]:focus:border-red-500 [&_textarea]:focus:outline-none
+        [&_select]:bg-neutral-900 [&_select]:border [&_select]:border-neutral-600 [&_select]:rounded-md [&_select]:p-2.5 [&_select]:text-white [&_select]:focus:border-red-500 [&_select]:focus:outline-none
+        [&_input[type='checkbox']]:w-4 [&_input[type='checkbox']]:h-4 [&_input[type='checkbox']]:text-red-600 [&_input[type='checkbox']]:bg-neutral-900 [&_input[type='checkbox']]:border-neutral-600
+    ">
+        {% csrf_token %}
+        
+        {{ form.as_p }}
 
-    {% csrf_token %}
-    {{ form.as_p }}
-
-    <button class="bg-red-800 hover:bg-red-500 text-white max-w-xs cursor-pointer font-bold py-2 px-4 rounded" type="submit">Añadir prenda</button>
-</form>
-
+        <div class="mt-8 flex justify-end gap-4">
+            <a href="{% url 'ropa_list' %}" class="bg-neutral-700 hover:bg-neutral-600 text-white font-bold py-2.5 px-6 rounded-md transition-colors">
+                Cancelar
+            </a>
+            <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2.5 px-6 rounded-md transition-colors shadow-lg shadow-red-900/20">
+                Añadir Prenda
+            </button>
+        </div>
+    </form>
+</div>
 {% endblock %}

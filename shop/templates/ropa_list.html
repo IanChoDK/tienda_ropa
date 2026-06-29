@@ -1,25 +1,66 @@
 {% extends 'base.html' %}
 
-{% block title %}Ropa{% endblock %}
+{% block title %}Admin | Ropa{% endblock %}
 
 {% block body %}
-    <h1 class="text-2xl font-bold">Ropa disponible</h1>
-    <ul>
-        {% for item in ropa %}
-            <li>{{ item.nombre }}</li>
-            <li>{{ item.descripcion }}</li>
-            <li>${{ item.precio }}</li>
-            {% if item.imagen %}
-                <img src="{{ item.imagen.url }}" alt="{{ item.nombre }}" width="200">
-            {% else %}
-                <p>No hay imagen</p>
-            {% endif %}
-            <div class="flex justify-between mt-2 items-center text-center">
-                <a class="flex bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" href="{% url 'editar_ropa' item.id %}">Editar</a>
-                <a class="flex bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" href="{% url 'eliminar_ropa' item.id %}">Eliminar</a>
-            </div>
-            <hr />
-        {% endfor %}
-    </ul>
-{% endblock %}
+<div class="w-full max-w-7xl mx-auto px-4 py-8">
+    
+    <div class="flex flex-col sm:flex-row justify-between items-center mb-8 border-b border-neutral-700 pb-4 mt-8">
+        <div>
+            <h1 class="text-3xl font-extrabold text-white">Administracion de prendas</h1>
+        </div>
+        {% if perms.shop.add_ropa %}
+        <a href="{% url 'crear_ropa' %}" class="mt-4 sm:mt-0 bg-white text-black hover:bg-neutral-200 font-bold py-2 px-6 rounded-md transition-colors shadow-lg">
+            + Nueva Prenda
+        </a>
+        {% endif %}
+    </div>
 
+    {% if ropa %}
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {% for item in ropa %}
+                <div class="bg-neutral-800 rounded-xl overflow-hidden border border-neutral-700 shadow-lg flex flex-col transition-all hover:border-neutral-500">
+                    
+                    <div class="relative h-56 bg-neutral-900 flex items-center justify-center overflow-hidden">
+                        {% if item.imagen %}
+                            <img src="{{ item.imagen.url }}" alt="{{ item.nombre }}" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                        {% else %}
+                            <span class="text-neutral-500 text-sm">Sin imagen</span>
+                        {% endif %}
+                        
+                        <span class="absolute top-2 right-2 bg-black/80 text-white text-xs font-bold px-2 py-1 rounded backdrop-blur-sm">
+                            {{ item.categoria.nombre }}
+                        </span>
+                    </div>
+
+                    <div class="p-5 flex flex-col">
+                        <h2 class="text-xl font-bold text-white mb-1 truncate" title="{{ item.nombre }}">{{ item.nombre }}</h2>
+                        <p class="text-2xl font-black text-red-500 mb-3">${{ item.precio }}</p>
+                        <p class="text-neutral-400 text-sm line-clamp-3 mb-4">{{ item.descripcion }}</p>
+                    </div>
+
+                    <div class="px-5 py-4 border-t border-neutral-700 bg-neutral-900 flex justify-between gap-3">
+                        <a href="{% url 'editar_ropa' item.id %}" class="flex-1 text-center bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-md transition-colors text-sm">
+                            Editar
+                        </a>
+                        <a href="{% url 'eliminar_ropa' item.id %}" class="flex-1 text-center bg-neutral-700 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-md transition-colors text-sm">
+                            Eliminar
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="flex flex-col items-center justify-center py-20 text-center bg-neutral-800/30 rounded-xl border border-neutral-700 border-dashed">
+            <svg class="w-16 h-16 text-neutral-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg>
+            <p class="text-neutral-400 text-lg mb-4">No hay modelos de ropa cargados todavía.</p>
+            {% if perms.shop.add_ropa %}
+                <a href="{% url 'crear_ropa' %}" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-md transition-colors">
+                    Subir tu primer modelo
+                </a>
+            {% endif %}
+        </div>
+    {% endif %}
+
+</div>
+{% endblock %}
