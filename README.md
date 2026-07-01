@@ -71,8 +71,13 @@ El proyecto estará disponible en tu navegador ingresando a: http://127.0.0.1:80
 
 ## Proyecto en funcionamiento:
 
+**HOME**
 ![home](https://github.com/IanChoDK/tienda_ropa/blob/5132d2380687e307effe8284f24d5b8755738dd0/media/ropa_images/home.png)
+**CREAR PRODUCTO**
 ![crear](https://github.com/IanChoDK/tienda_ropa/blob/5132d2380687e307effe8284f24d5b8755738dd0/media/ropa_images/crear-producto.png)
+**ADMIN PRODUCTO**
 ![admin-prendas](https://github.com/IanChoDK/tienda_ropa/blob/5132d2380687e307effe8284f24d5b8755738dd0/media/ropa_images/admin-prendas.png)
+**PRODUCTOS**
 ![productos](https://github.com/IanChoDK/tienda_ropa/blob/5132d2380687e307effe8284f24d5b8755738dd0/media/ropa_images/productos.png)
+**SUBIR-ROPA**
 ![subir-ropa](https://github.com/IanChoDK/tienda_ropa/blob/5132d2380687e307effe8284f24d5b8755738dd0/media/ropa_images/subiropa.png)
